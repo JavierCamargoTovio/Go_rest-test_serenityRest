@@ -4,6 +4,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
+import static org.hamcrest.Matchers.equalTo;
 
 public class StatusCodeResponse implements Question {
 
@@ -19,11 +20,14 @@ public class StatusCodeResponse implements Question {
     }
     @Override
     public Boolean answeredBy(Actor actor) {
-        actor.should(
-                seeThatResponse("Service API response status code",
-                        response -> response.statusCode(statusCode)
-                )
-        );
+
+
+            actor.should(
+                    seeThatResponse("Service API response status code",
+                            response -> response.statusCode(statusCode)
+                    )
+            );
+
         return true;
     }
 }

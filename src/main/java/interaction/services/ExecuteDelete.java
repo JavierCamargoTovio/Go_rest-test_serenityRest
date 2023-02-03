@@ -7,6 +7,9 @@ import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.rest.interactions.Delete;
 import net.thucydides.core.annotations.Step;
 
+import static net.serenitybdd.rest.SerenityRest.lastResponse;
+import static net.serenitybdd.screenplay.Tasks.instrumented;
+
 public class ExecuteDelete implements Interaction {
 
     private final String resource;
@@ -16,12 +19,17 @@ public class ExecuteDelete implements Interaction {
         this.resource = resource;
         this.id = id;
     }
+    public static ExecuteDelete service(String resource, String id) {
+        return instrumented(ExecuteDelete.class, resource, id);
+    }
+
+
     @Step("{0} executes a GET on the resource #resource with id #id")
     @Override
     public <T extends Actor> void performAs(T actor) {
         SerenityRest.reset();
         SerenityRest.useRelaxedHTTPSValidation();
-        actor.attemptsTo(Delete.from(resource)
+        actor.attemptsTo(Delete.from(resource + "{id}")
                 .with(request -> request
                         .contentType(ContentType.JSON)
                         .pathParam("id", id)
@@ -29,5 +37,6 @@ public class ExecuteDelete implements Interaction {
                         .all()
                 )
         );
+        lastResponse().peek();
     }
 }

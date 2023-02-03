@@ -6,6 +6,8 @@ import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.rest.interactions.Post;
 import net.thucydides.core.annotations.Step;
 
+import static net.serenitybdd.rest.SerenityRest.lastResponse;
+
 
 public class ExecutePost implements Interaction {
     private String resource;
@@ -28,5 +30,6 @@ public class ExecutePost implements Interaction {
                         .all()
                 )
         );
+        lastResponse().peek();
     }
 }
