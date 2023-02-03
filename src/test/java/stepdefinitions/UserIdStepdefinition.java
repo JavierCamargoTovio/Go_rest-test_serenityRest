@@ -2,10 +2,8 @@ package stepdefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import questions.NameUserID;
-import questions.StatusCodeResponse;
+import questions.NameUserResponse;
 import tasks.GetUserId;
-import tasks.GetUsersAll;
 import utils.Const;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
@@ -18,7 +16,7 @@ public class UserIdStepdefinition {
     }
     @Then("he validates name get user service  {string}")
     public void heValidatesNameGetUserService(String name) {
-        theActorInTheSpotlight().should(seeThat(NameUserID.is(name)));
+        theActorInTheSpotlight().should(seeThat(NameUserResponse.is(name)));
     }
 
 }

@@ -5,17 +5,16 @@ import net.serenitybdd.screenplay.Question;
 
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItems;
 
-public class NameUserID implements Question {
+public class NameUserResponse implements Question {
 
     private final String name;
 
-    public NameUserID(String name) {
+    public NameUserResponse(String name) {
         this.name = name;
     }
-    public static NameUserID is(String name) {
-        return new NameUserID(name);
+    public static NameUserResponse is(String name) {
+        return new NameUserResponse(name);
     }
 
     @Override

@@ -4,7 +4,6 @@ import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
-import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.rest.interactions.Get;
 import net.thucydides.core.annotations.Step;
 

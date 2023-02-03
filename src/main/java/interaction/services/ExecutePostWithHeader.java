@@ -1,21 +1,26 @@
 package interaction.services;
 
 import io.restassured.http.ContentType;
-import io.restassured.http.Header;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.rest.interactions.Post;
 
 import java.util.Map;
 
+import static net.serenitybdd.rest.SerenityRest.lastResponse;
+import static net.serenitybdd.screenplay.Tasks.instrumented;
+
 public class ExecutePostWithHeader implements Interaction {
 
     private String resource;
-    private String body;
-    private Map<String, Object> header;
+    private final String body;
+    private String header;
 
+    public static ExecutePostWithHeader service(String resource, String body, String header ) {
+        return instrumented(ExecutePostWithHeader.class,  resource,  body, header );
+    }
 
-    public ExecutePostWithHeader(String resource, String body, Map<String, Object> header) {
+    public ExecutePostWithHeader(String resource,String body, String header) {
         this.resource = resource;
         this.body = body;
         this.header = header;
@@ -26,12 +31,13 @@ public class ExecutePostWithHeader implements Interaction {
         actor.attemptsTo(Post.to(resource)
                 .with(request -> request
                         .contentType(ContentType.JSON)
-                        .header((Header) header)
+                        .header("Authorization", header)
                         .body(body)
                         .log()
                         .all()
                 )
         );
+        lastResponse().peek();
 
     }
 }

@@ -63,6 +63,8 @@ dependencies {
     implementation "io.github.bonigarcia:webdrivermanager:${boniGarciaVersion}"
     testImplementation "org.slf4j:slf4j-simple:${slf4jVersion}"
     testImplementation "io.rest-assured:rest-assured:${restAssured}"
+    implementation group: 'org.json', name: 'json', version: '20210307'
+    implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
     compileOnly fileTree(dir: 'libs', include: '*.jar')
 }
 
