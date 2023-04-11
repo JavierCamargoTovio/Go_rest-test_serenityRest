@@ -1,6 +1,5 @@
 package stepdefinitions;
 
-import exceptions.AssertionServicesError;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,7 +20,7 @@ public class UserAllDefinition {
     }
     @When("he calls get users API service")
     public void heCallsGetUsersAPIService() {
-        theActorInTheSpotlight().attemptsTo(GetUsersAll.service(Const.LIST_USER));
+        theActorInTheSpotlight().attemptsTo(GetUsersAll.service(Const.PATH_USER));
     }
     @Then("he validates status code get users service is {int}")
     public void heValidatesStatusCodeGetUsersServiceIs(Integer expectedStatusCode) {

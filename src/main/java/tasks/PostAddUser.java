@@ -4,11 +4,11 @@ import interaction.services.ExecutePostWithHeader;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import utils.Const;
-import utils.PreparateBodyPost;
 
 import java.util.List;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
+import static utils.PreparateBodyPost.bodyUser;
 
 public class PostAddUser implements Task {
 
@@ -22,10 +22,9 @@ public class PostAddUser implements Task {
         return instrumented(PostAddUser.class, data);
     }
 
-
     @Override
     public <T extends Actor> void performAs(T actor ) {
-        actor.attemptsTo(ExecutePostWithHeader.service(Const.LIST_USER,PreparateBodyPost.bodyUser(data), Const.AUTH_TOKEN));
+        actor.attemptsTo(ExecutePostWithHeader.service(Const.PATH_USER).withParameter(bodyUser(data), Const.AUTH_TOKEN));
     }
 
 }
